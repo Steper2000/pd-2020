@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="row">Calculator</h2>
+    <form method="GET">
+        <div class="row">
+            <input type="text" name="n1" value="{{ request.args.get('n1', '') }}">
+            <select name="op">
+                <option value="+" {% if request.args.get('op') == '+' %} selected='selected' {% endif %}>+</option>
+                <option value="-" {% if request.args.get('op') == '-' %} selected='selected' {% endif %}>-</option>
+                <option value="*" {% if request.args.get('op') == '*' %} selected='selected' {% endif %}>*</option>
+                <option value="/" {% if request.args.get('op') == '/' %} selected='selected' {% endif %}>/</option>
+            </select>
+            <input type="text" name="n2" value="{{ request.args.get('n2', '') }}">
+        </div>
+        <input type="submit" class="row">
+    </form>
+</div>
+    
+    {% if res %}
+        <p class="container">{{ request.args.get('n1') }} {{ request.args.get('op') }} {{ request.args.get('n2') }} = {{ res }}</p>
+    {% endif %}
+    {% if msg %}
+        <p class="container">{{ msg }}</p>
+    {% endif %}
+{% endblock %}
