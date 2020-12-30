@@ -1,25 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <table class="table">
-        <th>
-            <td>Код</td>
-            <td>Наименование</td> 
-            <td>Дата рождения</td>
-            <td>Должность</td>
-            <td>Паспорт</td>
-            <td>Номер счёта</td>
-        </th>
-        <tr>
-            <td></td>
-            <td></td> 
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+    <div class="container justify-content-center my-4">
+    <h2>Users</h2>
+    <table class="table table-dark text-center">
+        {% for user in users %}
+        {% if loop.index == 1 %}
+            <thead class="thead-dark">
+                <tr>
+                    <th>{{ user.code }}</th>
+                    <th>{{ user.name }}</th>
+                    <th>{{ user.birth }}</th>
+                    <th>{{ user.who }}</th>
+                    <th>{{ user.pasport }}</th>
+                    <th>{{ user.account }}</th>
+                </tr>
+            </thead>
+        {% else %}
+            <tbody>
+                    <tr>
+                        <td>{{ user.code }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.birth }}</td>
+                        <td>{{ user.who }}</td>
+                        <td>{{ user.pasport }}</td>
+                        <td>{{ user.account }}</td>
+                    </tr>
+            </tbody>
+        {% endif %}
+        {% endfor %}
     </table>
+    <!-- <p>{{ users }}</p> -->
 </div>
-    
 {% endblock %}
