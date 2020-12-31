@@ -6,7 +6,7 @@ application = app
 
 @app.route('/')
 def aaa():
-    with open('C:\\Users\\maxim\\Desktop\\PD\\Serv\\app\\test.csv', encoding='utf-8') as csvfile:
+    with open('C:\\1C_project\\pd-2020\\Serv\\app\\test.csv', encoding='utf-8') as csvfile:
         users = []
         reader = csv.reader(csvfile)
         for row in reader:
