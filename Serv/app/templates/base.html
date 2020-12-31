@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"  href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Document</title>
+    <title>PD-2020 1С</title>
 </head>
 
-<body>
+<body onload="closeForm();">
     <div class="jumbotron" style="margin-bottom: 0px;">
         <div class="d-flex container justify-content-between">
             <h2 class="">Проектная деятельность 2020</h2>
@@ -18,11 +19,50 @@
         </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center">
-        <a class="navbar-brand" href="#">Index</a>
-        <a class="navbar-brand" href="#">Search</a>
+        <a class="navbar-brand" href="/">Index</a>
+        <a class="navbar-brand" href="#"> <button class="open-button" onclick="openForm()">Search</button></a>
     </nav>
+
+    <div class="form-popup container justify-content-center my-4" id="myForm">
+      <form action="/process_data/"  method="post" class="form-container">
+        <h1>Поиск</h1>
+    
+        <label for="information"><b>Данные</b></label>
+        <input type="text" placeholder="Введите данные" name="information" required>
+      
+        <!-- <label for="email"><b>Наименование</b></label>
+        <input type="text" placeholder="Ваш е-мейл" name="email" required>
+
+        <label for="email"><b>Дата рождения</b></label>
+        <input type="text" placeholder="Ваш е-мейл" name="email" required>
+
+        <label for="email"><b>Должность</b></label>
+        <input type="text" placeholder="Ваш е-мейл" name="email" required>
+
+        <label for="email"><b>Паспорт</b></label>
+        <input type="text" placeholder="Ваш е-мейл" name="email" required>
+
+        <label for="email"><b>Номер счета</b></label>
+        <input type="text" placeholder="Ваш е-мейл" name="email" required> -->
+
+        Выбор по:
+        <select name= "searchoose">
+            <option value="code" value="code">Код</option>
+            <option value="name" value="name">Наименование</option>
+            <option value="birth">Дата рождения</option>
+            <option value="who">Должность</option>
+            <option value="pasport">Паспорт</option>
+            <option value="account">Номер счета</option>
+          </select>
+
+        <button type="submit" class="btn" onclick="search()">Поиск</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Отмена</button>
+      </form>
+    </div>
+
     {% block content %}
     {% endblock %}
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -33,5 +73,13 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 </body>
+<script>
+    function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
 
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+}
+</script>
 </html>

@@ -2,34 +2,39 @@
 
 {% block content %}
     <div class="container justify-content-center my-4">
-    <h2>Users</h2>
-    <table class="table table-dark text-center">
-        {% for user in users %}
-        {% if loop.index == 1 %}
+    <h2>База 1С</h2>
+    {% if users|length<1 %}
+        <p class="text-center">Данные не найдены :(</p>
+    {% else %}
+        <table class="table table-dark text-center">
             <thead class="thead-dark">
                 <tr>
-                    <th>{{ user.code }}</th>
-                    <th>{{ user.name }}</th>
-                    <th>{{ user.birth }}</th>
-                    <th>{{ user.who }}</th>
-                    <th>{{ user.pasport }}</th>
-                    <th>{{ user.account }}</th>
+                    <th>{{ headers.code }}</th>
+                    <th>{{ headers.name }}</th>
+                    <th>{{ headers.birth }}</th>
+                    <th>{{ headers.who }}</th>
+                    <th>{{ headers.pasport }}</th>
+                    <th>{{ headers.account }}</th>
                 </tr>
             </thead>
-        {% else %}
-            <tbody>
-                    <tr>
-                        <td>{{ user.code }}</td>
-                        <td>{{ user.name }}</td>
-                        <td>{{ user.birth }}</td>
-                        <td>{{ user.who }}</td>
-                        <td>{{ user.pasport }}</td>
-                        <td>{{ user.account }}</td>
-                    </tr>
-            </tbody>
-        {% endif %}
-        {% endfor %}
-    </table>
+            {% for user in users %}
+            {#% if loop.index == 1 %#}
+               
+            {#% else %#}
+                <tbody>
+                        <tr>
+                            <td>{{ user.code }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.birth }}</td>
+                            <td>{{ user.who }}</td>
+                            <td>{{ user.pasport }}</td>
+                            <td>{{ user.account }}</td>
+                        </tr>
+                </tbody>
+            {#% endif %#}
+            {% endfor %}
+        </table>
+    {% endif %}
     <!-- <p>{{ users }}</p> -->
 </div>
 {% endblock %}
