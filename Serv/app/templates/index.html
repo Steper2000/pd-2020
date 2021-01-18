@@ -22,14 +22,11 @@
                
             {#% else %#}
                 <tbody>
-                        <tr>
-                            <td>{{ user.code }}</td>
-                            <td>{{ user.name }}</td>
-                            <td>{{ user.birth }}</td>
-                            <td>{{ user.who }}</td>
-                            <td>{{ user.pasport }}</td>
-                            <td>{{ user.account }}</td>
-                        </tr>
+                    <tr>
+                        {% for key in user %}:
+                            <td>{{user[key]}}</td>
+                        {% endfor %}
+                    </tr>
                 </tbody>
             {#% endif %#}
             {% endfor %}

@@ -19,8 +19,9 @@
         </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center">
-        <a class="navbar-brand" href="/">Index</a>
-        <a class="navbar-brand" href="#"> <button class="open-button" onclick="openForm()">Search</button></a>
+        <a class="navbar-brand" href="#"><button class="btn btn-light" onclick="openForm()">Поиск</button></a>
+        <a class="navbar-brand" href="/">Вся база</a>
+        <a class="navbar-brand" href="/pd">Персональные данные</a>
     </nav>
 
     <div class="form-popup container justify-content-center my-4" id="myForm">
@@ -55,7 +56,7 @@
             <option value="account">Номер счета</option>
           </select>
 
-        <button type="submit" class="btn" onclick="search()">Поиск</button>
+        <button type="submit" class="btn">Поиск</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Отмена</button>
       </form>
     </div>

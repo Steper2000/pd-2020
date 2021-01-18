@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container justify-content-center my-4">
+    <h2>Поиск данных по шаблону</h2>
+    <div class="form-popup container justify-content-center my-4" id="pdForm">
+        <form action="/pd"  method="post" class="form-container">
+            Что ищем:
+            <select name= "datatype">
+                <option value="pasport">Паспорт</option>
+                <option value="account">Номер счета</option>
+                <option value="new">Свой шаблон</option>
+            </select>
+            <label for="selfmask"><b>Шаблон</b></label>
+            <input type="text" placeholder="Введите шаблон" name="selfmask">
+            
+            <button type="submit" class="btn" >Поиск</button>
+        </form>
+    </div>
+    
+    
+    
+
+    {% if users|length<1 %}
+        <p class="text-center">Данные не найдены :(</p>
+    {% else %}
+        <table class="table table-dark text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>{{ headers.code }}</th>
+                    <th>{{ headers.name }}</th>
+                    <th>{{ headers.birth }}</th>
+                    <th>{{ headers.who }}</th>
+                    <th>{{ headers.pasport }}</th>
+                    <th>{{ headers.account }}</th>
+                </tr>
+            </thead>
+            {% for user in users %}
+            {% set outer_loop = loop %}   
+                <tbody>
+                    <tr>
+                        <!-- style="color:greenyellow" -->
+                        {% for key in user %}:
+                            {% if pdlist is defined and key in pdlist[outer_loop.index0] %}
+                                <td style="color:greenyellow">{{user[key]}}</td>
+                            {% else %}
+                                <td>{{user[key]}}</td>
+                            {% endif %}
+
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    {% endif %}
+    <!-- <p>{{ users }}</p> -->
+</div>
+{% endblock %}
