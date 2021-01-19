@@ -1,6 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+.descr{
+    display:none;
+    margin-left:20%;
+    padding:10px;
+    margin-top:17px;
+    background:#f3f3f3;
+    -moz-box-shadow:0 5px 5px rgba(0,0,0,0.3);
+    -webkit-box-shadow:0 5px 5px rgba(0,0,0,0.3);
+    box-shadow:0 5px 5px rgba(0,0,0,0.3);
+}
+.poster:hover .descr{
+    display:block;
+    position:absolute;
+    top:120px;
+    z-index:9999;
+    width:500px;
+}
+</style>
     <div class="container justify-content-center my-4">
     <h2>Поиск данных по шаблону</h2>
     <div class="form-popup container justify-content-center my-4" id="pdForm">
@@ -11,10 +30,89 @@
                 <option value="account">Номер счета</option>
                 <option value="new">Свой шаблон</option>
             </select>
-            <label for="selfmask"><b>Шаблон</b></label>
+            <div class="poster">
+                <label for="selfmask"><b><u>Шаблон</u></b></label>
+                
             <input type="text" placeholder="Введите шаблон" name="selfmask">
             
             <button type="submit" class="btn" >Поиск</button>
+                <div class="descr">
+                    <table width="100%">
+                        <tbody>
+                        <tr>
+                        <th style="text-align: center;" width="90"><strong>Оператор</strong></th>
+                        <th style="text-align: center;" width="680"><strong>Описание</strong></th>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>.</tt></td>
+                        <td width="680">Один любой символ, кроме новой строки <tt>\n</tt>.</td>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>?</tt></td>
+                        <td width="680">0 или 1 вхождение шаблона слева</td>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>+</tt></td>
+                        <td width="680">1 и более вхождений шаблона слева</td>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>*</tt></td>
+                        <td width="680">0 и более вхождений шаблона слева</td>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>\w</tt></td>
+                        <td width="680">Любая цифра или буква (<tt>\W</tt> —&nbsp;все, кроме буквы или цифры)</td>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>\d</tt></td>
+                        <td width="680">Любая цифра [0-9] (<tt>\D</tt> —&nbsp;все, кроме цифры)</td>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>\s</tt></td>
+                        <td width="680">Любой пробельный символ (<tt>\S</tt> —&nbsp;любой непробельный символ)</td>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>\b</tt></td>
+                        <td width="680">Граница слова</td>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>[..]</tt></td>
+                        <td width="680">Один из символов в скобках (<tt>[^..]</tt> —&nbsp;любой символ, кроме тех, что в скобках)</td>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>\</tt></td>
+                        <td width="680">Экранирование специальных символов (<tt>\.</tt> означает точку или <tt>\+</tt> —&nbsp;знак «плюс»)</td>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>^</tt> и <tt>$</tt></td>
+                        <td width="680">Начало и конец строки соответственно</td>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>{n,m}</tt></td>
+                        <td width="680">От <tt>n</tt> до <tt>m</tt> вхождений (<tt>{,m}</tt> —&nbsp;от 0 до <tt>m</tt>)</td>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>a|b</tt></td>
+                        <td width="680">Соответствует <tt>a</tt> или <tt>b</tt></td>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>()</tt></td>
+                        <td width="680">Группирует выражение и возвращает найденный текст</td>
+                        </tr>
+                        <tr>
+                        <td width="90"><tt>\t</tt>, <tt>\n</tt>, <tt>\r</tt></td>
+                        <td width="680">Символ табуляции, новой строки и возврата каретки соответственно</td>
+                        </tr>
+                        <td width="90"><tt>Пример</tt></td>
+                        <td width="680"> Паспорт ^\d\d\d\d\d\d\d\d\d\d$</td>
+                        </tr>
+                        <tr>
+                        
+                        </tbody>
+                        </table>
+            </div>
+            </div>
+
         </form>
     </div>
     
