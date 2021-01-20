@@ -22,8 +22,8 @@
     }
 </style>
 <div class="container justify-content-center my-4">
-    {% if err is defined and err!='' %}
-    <div class="alert alert-danger alert-dismissible" role="alert">
+    {% if err is defined and err!=''%}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
         {{ err }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -37,8 +37,6 @@
             <select name="datatype">
                 <option value="pasport" {% if sel=='pasport' %} selected {% endif %}>Паспорт</option>
                 <option value="account" {% if sel=='account' %} selected {% endif %}>Номер счета</option>
-                <option value="name" {% if sel=='name' %} selected {% endif %}>Имя</option>
-                <option value="date" {% if sel=='date' %} selected {% endif %}>Дата</option>
                 <option value="new" {% if sel=='new' %} selected {% endif %}>Свой шаблон</option>
             </select>
             <div class="poster py-3">
@@ -48,7 +46,7 @@
 
                 <button type="submit" class="btn btn-dark">Поиск</button>
 
-                <!-- <div class="descr">
+                <div class="descr">
                     <table width="100%">
                         <tbody>
                             <tr>
@@ -56,78 +54,78 @@
                                 <th style="text-align: center;" width="680"><strong>Описание</strong></th>
                             </tr>
                             <tr>
-                                <td width="90">.</td>
-                                <td width="680">Один любой символ, кроме новой строки \n.</td>
+                                <td width="90"><tt>.</tt></td>
+                                <td width="680">Один любой символ, кроме новой строки <tt>\n</tt>.</td>
                             </tr>
                             <tr>
-                                <td width="90">?</td>
+                                <td width="90"><tt>?</tt></td>
                                 <td width="680">0 или 1 вхождение шаблона слева</td>
                             </tr>
                             <tr>
-                                <td width="90">+</td>
+                                <td width="90"><tt>+</tt></td>
                                 <td width="680">1 и более вхождений шаблона слева</td>
                             </tr>
                             <tr>
-                                <td width="90">*</td>
+                                <td width="90"><tt>*</tt></td>
                                 <td width="680">0 и более вхождений шаблона слева</td>
                             </tr>
                             <tr>
-                                <td width="90">\w</td>
-                                <td width="680">Любая цифра или буква (\W —&nbsp;все, кроме буквы или цифры)
+                                <td width="90"><tt>\w</tt></td>
+                                <td width="680">Любая цифра или буква (<tt>\W</tt> —&nbsp;все, кроме буквы или цифры)
                                 </td>
                             </tr>
                             <tr>
-                                <td width="90">\d</td>
-                                <td width="680">Любая цифра [0-9] (\D —&nbsp;все, кроме цифры)</td>
+                                <td width="90"><tt>\d</tt></td>
+                                <td width="680">Любая цифра [0-9] (<tt>\D</tt> —&nbsp;все, кроме цифры)</td>
                             </tr>
                             <tr>
-                                <td width="90">\s</td>
-                                <td width="680">Любой пробельный символ (\S —&nbsp;любой непробельный символ)
+                                <td width="90"><tt>\s</tt></td>
+                                <td width="680">Любой пробельный символ (<tt>\S</tt> —&nbsp;любой непробельный символ)
                                 </td>
                             </tr>
                             <tr>
-                                <td width="90">\b</td>
+                                <td width="90"><tt>\b</tt></td>
                                 <td width="680">Граница слова</td>
                             </tr>
                             <tr>
-                                <td width="90">[..]</td>
-                                <td width="680">Один из символов в скобках ([^..] —&nbsp;любой символ, кроме
+                                <td width="90"><tt>[..]</tt></td>
+                                <td width="680">Один из символов в скобках (<tt>[^..]</tt> —&nbsp;любой символ, кроме
                                     тех, что в скобках)</td>
                             </tr>
                             <tr>
-                                <td width="90">\</td>
-                                <td width="680">Экранирование специальных символов (\. означает точку или
-                                    \+ —&nbsp;знак «плюс»)</td>
+                                <td width="90"><tt>\</tt></td>
+                                <td width="680">Экранирование специальных символов (<tt>\.</tt> означает точку или
+                                    <tt>\+</tt> —&nbsp;знак «плюс»)</td>
                             </tr>
                             <tr>
-                                <td width="90">^ и $</td>
+                                <td width="90"><tt>^</tt> и <tt>$</tt></td>
                                 <td width="680">Начало и конец строки соответственно</td>
                             </tr>
                             <tr>
-                                <td width="90">{n,m}</td>
-                                <td width="680">От n до m вхождений ({,m} —&nbsp;от 0 до
-                                    m)</td>
+                                <td width="90"><tt>{n,m}</tt></td>
+                                <td width="680">От <tt>n</tt> до <tt>m</tt> вхождений (<tt>{,m}</tt> —&nbsp;от 0 до
+                                    <tt>m</tt>)</td>
                             </tr>
                             <tr>
-                                <td width="90">a|b</td>
-                                <td width="680">Соответствует a или b</td>
+                                <td width="90"><tt>a|b</tt></td>
+                                <td width="680">Соответствует <tt>a</tt> или <tt>b</tt></td>
                             </tr>
                             <tr>
-                                <td width="90">()</td>
+                                <td width="90"><tt>()</tt></td>
                                 <td width="680">Группирует выражение и возвращает найденный текст</td>
                             </tr>
                             <tr>
-                                <td width="90">\t, \n, \r</td>
+                                <td width="90"><tt>\t</tt>, <tt>\n</tt>, <tt>\r</tt></td>
                                 <td width="680">Символ табуляции, новой строки и возврата каретки соответственно</td>
                             </tr>
-                            <td width="90">Пример</td>
+                            <td width="90"><tt>Пример</tt></td>
                             <td width="680"> Паспорт ^\d\d\d\d\s\d\d\d\d\d\d$</td>
                             </tr>
                             <tr>
 
                         </tbody>
                     </table>
-                </div> -->
+                </div>
             </div>
 
         </form>
@@ -136,49 +134,37 @@
 
 
 
-    {% if users | length < 1 %} <p class="text-center">Данные не найдены :(</p>
-    {% else %}
-    
-    <table class="table table-dark text-center">
-        <thead class="thead-dark">
-            <tr>
-                <th>{{ headers.code }}</th>
-                <th>{{ headers.name }}</th>
-                <th>{{ headers.birth }}</th>
-                <th>{{ headers.who }}</th>
-                <th>{{ headers.pasport }}</th>
-                <th>{{ headers.account }}</th>
-            </tr>
-        </thead>
-        {% for user in users %}
-        {% set outer_loop = loop %}
-        {% set cnt = 0 %}
-        <tbody>
-            <tr>
-                {% for key in user %}
-                {% if pdlist is defined and key in pdlist[outer_loop.index0] %}
-                <td style="color:greenyellow">{{user[key]}}</td>
-                {{ incr_cnt() }}
-                {% else %}
-                <td>{{user[key]}}</td>
-                {% endif %}
+    {% if users|length<1 %} <p class="text-center">Данные не найдены :(</p>
+        {% else %}
+        <table class="table table-dark text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>{{ headers.code }}</th>
+                    <th>{{ headers.name }}</th>
+                    <th>{{ headers.birth }}</th>
+                    <th>{{ headers.who }}</th>
+                    <th>{{ headers.pasport }}</th>
+                    <th>{{ headers.account }}</th>
+                </tr>
+            </thead>
+            {% for user in users %}
+            {% set outer_loop = loop %}
+            <tbody>
+                <tr>
+                    <!-- style="color:greenyellow" -->
+                    {% for key in user %}:
+                    {% if pdlist is defined and key in pdlist[outer_loop.index0] %}
+                    <td style="color:greenyellow">{{user[key]}}</td>
+                    {% else %}
+                    <td>{{user[key]}}</td>
+                    {% endif %}
 
-                {% endfor %}
-            </tr>
-        </tbody>
-        {% endfor %}
-    </table>
-    {% if get_cnt() != 0 %}
-    <div class="alert alert-success alert-dismissible" role="alert">
-        Найдено {{ get_cnt() }} записей
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    {{ null_cnt() }}
-    {% endif %}
-    
-    {% endif %} 
-    <!-- <p>{{ users }}</p> -->
+                    {% endfor %}
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+        {% endif %}
+        <!-- <p>{{ users }}</p> -->
 </div>
 {% endblock %}

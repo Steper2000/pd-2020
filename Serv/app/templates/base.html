@@ -24,28 +24,13 @@
         <a class="navbar-brand" href="/pd">Персональные данные</a>
     </nav>
 
-    <div class="form-popup container justify-content-center my-4" id="myForm">
+    <!-- <div class="form-popup container justify-content-center my-4" id="myForm">
       <form action="/process_data/"  method="post" class="form-container">
         <h1>Поиск</h1>
     
         <label for="information"><b>Данные</b></label>
         <input type="text" placeholder="Введите данные" name="information" required>
       
-        <!-- <label for="email"><b>Наименование</b></label>
-        <input type="text" placeholder="Ваш е-мейл" name="email" required>
-
-        <label for="email"><b>Дата рождения</b></label>
-        <input type="text" placeholder="Ваш е-мейл" name="email" required>
-
-        <label for="email"><b>Должность</b></label>
-        <input type="text" placeholder="Ваш е-мейл" name="email" required>
-
-        <label for="email"><b>Паспорт</b></label>
-        <input type="text" placeholder="Ваш е-мейл" name="email" required>
-
-        <label for="email"><b>Номер счета</b></label>
-        <input type="text" placeholder="Ваш е-мейл" name="email" required> -->
-
         Выбор по:
         <select name= "searchoose">
             <option value="code" value="code">Код</option>
@@ -59,7 +44,7 @@
         <button type="submit" class="btn">Поиск</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Отмена</button>
       </form>
-    </div>
+    </div> -->
 
     {% block content %}
     {% endblock %}

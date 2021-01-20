@@ -18,14 +18,32 @@ with open('test.csv', encoding='utf-8') as csvfile:
         users.append(user)
     headers=users.pop(0)
 
+cnt = 0
+def incr_cnt():
+    global cnt
+    cnt += 1
+    return ''
+
+def get_cnt():
+    global cnt
+    lcnt = cnt
+    # print(lcnt)
+    return lcnt
+
+def null_cnt():
+    global cnt
+    cnt = 0
+    return ''
+
 @app.route('/')
 def index():
-    pass
+    print(headers)
+    print(users)
     return render_template('index.html', users=users, headers=headers)
 
 @app.route('/pd')
 def pd():
-    return render_template('pd.html', users=users, headers=headers)
+    return render_template('pd.html', users=users, headers=headers, incr_cnt=incr_cnt, get_cnt=get_cnt)
 
 @app.route('/pd', methods=['POST'])
 def pdsearch():
@@ -33,16 +51,21 @@ def pdsearch():
     # Подбор маски
     if request.method == 'POST':
         select = request.form.get('datatype')
+        print(select)
         if select=="pasport":
-            mask=r'^\d\d\d\d\s\d\d\d\d\d\d$'
+            mask=r'^\d{4}\s\d{6}$'
         elif select=="account":
-            mask=r'^\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d$'
+            mask=r'^\d{16}$'
+        elif select=="name":
+            mask=r'^[А-Яа-я]*\s?[А-Яа-я]+\s[А-Яа-я]+$'
+        elif select=="date":
+            mask=r'^\d\d?(\.|-|\/)\d\d?(\.|-|\/)\d\d\d?\d?$'
         elif select=="new":
             mask=request.form.get('selfmask')
     # Обработка пустого шаблона
     if mask=='':
         err='Нельзя использовать пустой шаблон. Заполните форму и повторите попытку'
-        return render_template('pd.html', users=users, headers=headers, sel=select, mask=mask, err=err)
+        return render_template('pd.html', users=users, headers=headers, sel=select, mask=mask, err=err, incr_cnt=incr_cnt, get_cnt=get_cnt, null_cnt=null_cnt)
     # Её применение
     pdlist=[]
     pdkeys=[]
@@ -54,7 +77,7 @@ def pdsearch():
         # Оказывается если не написать .copy, то в pdlist будут меняться внутренности, когда меняется pdkeys
         pdlist.append(pdkeys.copy()) 
         pdkeys.clear()
-    return render_template('pd.html', users=users, headers=headers, pdlist=pdlist, sel=select, mask=mask, err='')
+    return render_template('pd.html', users=users, headers=headers, pdlist=pdlist, sel=select, mask=mask, err='', incr_cnt=incr_cnt, get_cnt=get_cnt, null_cnt=null_cnt)
 
 @app.route('/process_data/', methods=['POST'])
 def search():
@@ -69,5 +92,9 @@ def search():
                 userssearched.append(item)
         #userssearched.append(next(item for item in users if item[select].find(information)!=-1))
     return render_template('index.html', users=userssearched, headers=headers)
+
+@app.route('/tmp')
+def t():
+    return render_template('t.html')
 
 application.run()
