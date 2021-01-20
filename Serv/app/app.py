@@ -25,8 +25,7 @@ def index():
 
 @app.route('/pd')
 def pd():
-    mask=''
-    return render_template('pd.html', users=users, headers=headers, mask=mask)
+    return render_template('pd.html', users=users, headers=headers)
 
 @app.route('/pd', methods=['POST'])
 def pdsearch():
@@ -35,27 +34,27 @@ def pdsearch():
     if request.method == 'POST':
         select = request.form.get('datatype')
         if select=="pasport":
-            mask=r'^\d\d\d\d\d\d\d\d\d\d$'
+            mask=r'^\d\d\d\d\s\d\d\d\d\d\d$'
         elif select=="account":
             mask=r'^\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d$'
         elif select=="new":
             mask=request.form.get('selfmask')
-    # Её приминение
+    # Обработка пустого шаблона
+    if mask=='':
+        err='Нельзя использовать пустой шаблон. Заполните форму и повторите попытку'
+        return render_template('pd.html', users=users, headers=headers, sel=select, mask=mask, err=err)
+    # Её применение
     pdlist=[]
     pdkeys=[]
     for user in users:
         for key in user:
             res=re.match(mask, user[key])
             if res!=None:
-                print(key, user[key], mask, res)
                 pdkeys.append(key)
-                print(pdkeys)
-        print(pdkeys)
-        pdlist.append(pdkeys.copy()) # Оказывается если не написать копи, то в pdlist будут меняться внутренности, когда меняется pdkeys
-        print(pdlist)
+        # Оказывается если не написать .copy, то в pdlist будут меняться внутренности, когда меняется pdkeys
+        pdlist.append(pdkeys.copy()) 
         pdkeys.clear()
-    print(pdlist)
-    return render_template('pd.html', users=users, headers=headers, mask=mask, pdlist=pdlist)
+    return render_template('pd.html', users=users, headers=headers, pdlist=pdlist, sel=select, mask=mask, err='')
 
 @app.route('/process_data/', methods=['POST'])
 def search():
@@ -64,7 +63,6 @@ def search():
     if request.method == 'POST':
         select = request.form.get('searchoose')
         information = request.form.get('information') 
-        print(information)
         # print(next(item for item in users if item['code'] == '000000003'))
         for item in users:
             if item[select].find(information)!=-1:

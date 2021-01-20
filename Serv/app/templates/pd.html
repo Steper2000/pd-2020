@@ -20,22 +20,33 @@
     width:500px;
 }
 </style>
-    <div class="container justify-content-center my-4">
+<div class="container justify-content-center my-4">
+    {% if err is defined and err!=''%}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ err }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
     <h2>Поиск данных по шаблону</h2>
     <div class="form-popup container justify-content-center my-4" id="pdForm">
         <form action="/pd"  method="post" class="form-container">
             Что ищем:
             <select name= "datatype">
-                <option value="pasport">Паспорт</option>
-                <option value="account">Номер счета</option>
-                <option value="new">Свой шаблон</option>
+                <option value="pasport" {% if sel == 'pasport' %} selected {% endif %} >Паспорт</option>
+                <option value="account" {% if sel == 'account' %} selected {% endif %}>Номер счета</option>
+                <option value="new"     {% if sel == 'new' %} selected {% endif %}>Свой шаблон</option>
             </select>
-            <div class="poster">
+            <div class="poster py-3">
                 <label for="selfmask"><b><u>Шаблон</u></b></label>
+                <input type="text" 
+                    {% if sel == 'new' %} value="{{mask or ''}}" {% endif %} 
+                    placeholder="Введите шаблон"
+                name="selfmask">
+
+                <button type="submit" class="btn btn-dark" >Поиск</button>
                 
-            <input type="text" placeholder="Введите шаблон" name="selfmask">
-            
-            <button type="submit" class="btn" >Поиск</button>
                 <div class="descr">
                     <table width="100%">
                         <tbody>
@@ -104,13 +115,13 @@
                         <td width="680">Символ табуляции, новой строки и возврата каретки соответственно</td>
                         </tr>
                         <td width="90"><tt>Пример</tt></td>
-                        <td width="680"> Паспорт ^\d\d\d\d\d\d\d\d\d\d$</td>
+                        <td width="680"> Паспорт ^\d\d\d\d\s\d\d\d\d\d\d$</td>
                         </tr>
                         <tr>
                         
                         </tbody>
                         </table>
-            </div>
+                </div>
             </div>
 
         </form>
