@@ -37,8 +37,8 @@ def null_cnt():
 
 @app.route('/')
 def index():
-    print(headers)
-    print(users)
+    #print(headers)
+    #print(users)
     return render_template('index.html', users=users, headers=headers)
 
 @app.route('/pd')
@@ -92,9 +92,5 @@ def search():
                 userssearched.append(item)
         #userssearched.append(next(item for item in users if item[select].find(information)!=-1))
     return render_template('index.html', users=userssearched, headers=headers)
-
-@app.route('/tmp')
-def t():
-    return render_template('t.html')
 
 application.run()
