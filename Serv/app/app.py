@@ -41,6 +41,12 @@ def index():
     #print(users)
     return render_template('index.html', users=users, headers=headers)
 
+@app.route('/fz')
+def fz():
+    #print(headers)
+    #print(users)
+    return render_template('fz.html')
+
 @app.route('/pd')
 def pd():
     return render_template('pd.html', users=users, headers=headers, incr_cnt=incr_cnt, get_cnt=get_cnt)

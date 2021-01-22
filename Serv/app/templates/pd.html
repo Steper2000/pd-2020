@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<script>
+    function showDiv(value){
+        if (value === "new"){
+            document.getElementById("template").style.visibility='visible'
+        } else{
+            document.getElementById("template").style.visibility='hidden'
+        }
+    };
+</script>
 <style>
     .descr {
         display: none;
@@ -34,19 +43,21 @@
     <div class="form-popup container justify-content-center my-4" id="pdForm">
         <form action="/pd" method="post" class="form-container">
             Что ищем:
-            <select name="datatype">
+            <select name="datatype" id="datatype" onclick="showDiv(this.value)">
                 <option value="pasport" {% if sel=='pasport' %} selected {% endif %}>Паспорт</option>
                 <option value="account" {% if sel=='account' %} selected {% endif %}>Номер счета</option>
                 <option value="name" {% if sel=='name' %} selected {% endif %}>ФИО</option>
                 <option value="date" {% if sel=='date' %} selected {% endif %}>Дата</option>
-                <option value="new" {% if sel=='new' %} selected {% endif %}>Свой шаблон</option>
+                <option  value="new" {% if sel=='new' %} selected {% endif %} >Свой шаблон</option>
             </select>
+            <button type="submit" class="btn btn-dark">Поиск</button>
+            <div class="template" id="template" style="visibility: hidden">
             <div class="poster py-3">
                 <label for="selfmask"><b><u>Шаблон</u></b></label>
                 <input type="text" {% if sel=='new' %} value="{{mask or ''}}" {% endif %} placeholder="Введите шаблон"
                     name="selfmask">
 
-                <button type="submit" class="btn btn-dark">Поиск</button>
+
 
                 <div class="descr">
                     <table width="100%">
@@ -129,7 +140,7 @@
                     </table>
                 </div>
             </div>
-
+        </div>
         </form>
     </div>
 
@@ -181,3 +192,4 @@
     <!-- <p>{{ users }}</p> -->
 </div>
 {% endblock %}
+
