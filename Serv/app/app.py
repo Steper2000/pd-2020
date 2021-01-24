@@ -63,7 +63,7 @@ def pdsearch():
         elif select=="account":
             mask=r'^\d{16}$'
         elif select=="name":
-            mask=r'^[А-Яа-я]*\s?[А-Яа-я]+\s[А-Яа-я]+$'
+            mask=r'^[А-Яа-яЁё]*\s?[А-Яа-яЁё]+\s[А-Яа-яЁё]+$'
         elif select=="date":
             mask=r'^\d\d?(\.|-|\/)\d\d?(\.|-|\/)\d\d\d?\d?$'
         elif select=="new":
